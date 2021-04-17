@@ -1,14 +1,49 @@
 
-//Open create account page on click sign up button
+                    //LOGIN PAGE JS CODE
+
+//Open create account page on click sign up button in login page
 var signupbtn = document.getElementById("signup");
 
 if (signupbtn != null){
+
 signupbtn.addEventListener("click", onclicksignupbtn);
 
 function onclicksignupbtn() {
     
-    window.location.replace('./createaccount.html');
+    window.location.assign('./createaccount.html');
 }
+}
+
+//User Email and password validation for login
+var userEmailaddress = document.getElementById('email-address');
+var userPswd = document.getElementById('password');
+
+var signinBtn = document.getElementById('signinbtn');
+
+
+//addeventlistner on click of sign in button
+if (signinBtn != null){
+    signinBtn.addEventListener("click" , userloginvalidation);
+}
+
+
+function userloginvalidation(event) {
+
+    event.preventDefault();
+
+    UserProfile.forEach(finduser);
+
+    function finduser(user) {
+
+        if (userEmailaddress.value === user.email && userPswd.value === user.password){
+            //window.location.replace('./.html');
+            console.log("Login credentials correct");
+        }
+
+    }
+        
+     alert("Incorrect EmailAddress or Password");
+
 }
 
 // Create account on click of create account button
