@@ -46,6 +46,8 @@ function userloginvalidation(event) {
 
 }
 
+                    //CREATE ACCOUNT PAGE JS CODE
+
 // Create account on click of create account button
 var userFirstname = document.getElementById('first_name');
 var userLastname = document.getElementById('last_name');
@@ -54,45 +56,72 @@ var userPassword = document.getElementById('password');
 var userConfirmPassword = document.getElementById('c_password');
 var createBtn = document.getElementById('CreateAccbtn');
 
+
 var UserProfile = [];
 var user_F_name;
 var user_L_name;
 var user_Email;
 var user_Password;
+var user_C_Password;
 
+//Check for null value from localstorage variable UserProfile
+if (JSON.parse(localStorage.getItem("UserProfile") != null)){
 
+    UserProfile = JSON.parse(localStorage.getItem("UserProfile"));
+}
 
-createBtn.addEventListener('click' , createuseraccount);
+userPassword.onblur = (password_length_validate);
+
+function password_length_validate() {
+
+}
+
+if (createBtn != null){
+    createBtn.addEventListener('click' , createuseraccount);
+}
 
 function createuseraccount(event) {
 
     event.preventDefault();
-    //validation for password and confirm password
 
     user_F_name = userFirstname.value;
     user_L_name = userLastname.value;
     user_Email = userEmail.value;
     user_Password = userPassword.value;
+    user_C_Password = userConfirmPassword.value;
     
-    storeUserProfile();
+    if(user_F_name == null || user_F_name == "" || user_L_name == null || user_L_name == "" || user_Email == null || user_Email == "" || user_Password == null || user_Password == "" || user_C_Password == null || user_C_Password == ""){
+        alert("Please Fill All Required Field");
+    }
+    else if(user_Password != user_C_Password){
+        alert("Your Password didn't match");
+    }
+    else if (userPassword.value.length < 8){
+        alert("Your password must contains atleat 8 characters")
+    }
+    else{
+        storeUserProfile();
+    }
+    
 
 }
 
 
 function storeUserProfile() {
 
-var userdetails = {
+    var userdetails = {
 
-    firstname: user_F_name,
-    lastname: user_L_name,
-    email:user_Email,
-    password: user_Password
+        firstname: user_F_name,
+        lastname: user_L_name,
+        email:user_Email,
+        password: user_Password
 
-};
-UserProfile.push(userdetails);
+    };
+
+    UserProfile.push(userdetails);
 
     localStorage.setItem("UserProfile", JSON.stringify(UserProfile));
    
 
-   console.log(JSON.parse(localStorage.getItem("UserProfile")));
+    console.log(JSON.parse(localStorage.getItem("UserProfile")));
 }
