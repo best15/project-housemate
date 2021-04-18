@@ -18,7 +18,7 @@ signupbtn.addEventListener("click", onclicksignupbtn);
 
 function onclicksignupbtn() {
     
-    window.location.assign('./createaccount.html');
+    window.location.assign('./pages/createaccount.html');
 }
 }
 
@@ -120,7 +120,7 @@ function storeHouseProfile() {
 
     localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
       
-    window.location.replace("./signUp.html");
+    window.location.replace("./index.html");
     
 }
 
