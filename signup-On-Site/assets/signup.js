@@ -1,3 +1,11 @@
+var houseProfile = [];
+
+
+//Check for null value from localstorage variable UserProfile
+if (JSON.parse(localStorage.getItem("houseProfile") != null)){
+
+    houseProfile = JSON.parse(localStorage.getItem("houseProfile"));
+}
 
                     //LOGIN PAGE JS CODE
 
@@ -14,8 +22,8 @@ function onclicksignupbtn() {
 }
 }
 
-//User Email and password validation for login
-var userEmailaddress = document.getElementById('email-address');
+
+var UserName = document.getElementById('UserName');
 var userPswd = document.getElementById('password');
 
 var signinBtn = document.getElementById('signinbtn');
@@ -31,66 +39,56 @@ function userloginvalidation(event) {
 
     event.preventDefault();
 
-    UserProfile.forEach(finduser);
+    houseProfile.forEach(finduser);
 
-    function finduser(user) {
+    function finduser(houseprofile) {
 
-        if (userEmailaddress.value === user.email && userPswd.value === user.password){
+        if (UserName.value === houseprofile.Username && userPswd.value === houseprofile.password){
+            //set current user
             //window.location.replace('./.html');
             console.log("Login credentials correct");
         }
 
     }
         
-     alert("Incorrect EmailAddress or Password");
+    //  alert("Incorrect UserName or Password");
 
 }
 
                     //CREATE ACCOUNT PAGE JS CODE
 
 // Create account on click of create account button
-var userFirstname = document.getElementById('first_name');
-var userLastname = document.getElementById('last_name');
-var userEmail = document.getElementById('email_address');
+var housename = document.getElementById('house_name');
+var address = document.getElementById('address');
+var username = document.getElementById('username');
 var userPassword = document.getElementById('password');
 var userConfirmPassword = document.getElementById('c_password');
 var createBtn = document.getElementById('CreateAccbtn');
 
 
-var UserProfile = [];
-var user_F_name;
-var user_L_name;
-var user_Email;
+
+var house_name;
+var H_address;
+var user_name;
 var user_Password;
 var user_C_Password;
 
-//Check for null value from localstorage variable UserProfile
-if (JSON.parse(localStorage.getItem("UserProfile") != null)){
-
-    UserProfile = JSON.parse(localStorage.getItem("UserProfile"));
-}
-
-userPassword.onblur = (password_length_validate);
-
-function password_length_validate() {
-
-}
 
 if (createBtn != null){
-    createBtn.addEventListener('click' , createuseraccount);
+    createBtn.addEventListener('click' , createaccount);
 }
 
-function createuseraccount(event) {
+function createaccount(event) {
 
     event.preventDefault();
 
-    user_F_name = userFirstname.value;
-    user_L_name = userLastname.value;
-    user_Email = userEmail.value;
+    house_name = housename.value;
+    H_address = address.value;
+    user_name = username.value;
     user_Password = userPassword.value;
     user_C_Password = userConfirmPassword.value;
     
-    if(user_F_name == null || user_F_name == "" || user_L_name == null || user_L_name == "" || user_Email == null || user_Email == "" || user_Password == null || user_Password == "" || user_C_Password == null || user_C_Password == ""){
+    if(house_name == null || house_name == "" || H_address == null || H_address == "" || user_name == null || user_name == "" || user_Password == null || user_Password == "" || user_C_Password == null || user_C_Password == ""){
         alert("Please Fill All Required Field");
     }
     else if(user_Password != user_C_Password){
@@ -100,28 +98,32 @@ function createuseraccount(event) {
         alert("Your password must contains atleat 8 characters")
     }
     else{
-        storeUserProfile();
+        storeHouseProfile();
     }
     
 
 }
 
 
-function storeUserProfile() {
+function storeHouseProfile() {
 
-    var userdetails = {
+    var housedetail = {
 
-        firstname: user_F_name,
-        lastname: user_L_name,
-        email:user_Email,
+        houseName: house_name,
+        Address: H_address,
+        Username:user_name,
         password: user_Password
 
     };
 
-    UserProfile.push(userdetails);
+    houseProfile.push(housedetail);
 
-    localStorage.setItem("UserProfile", JSON.stringify(UserProfile));
-   
-
-    console.log(JSON.parse(localStorage.getItem("UserProfile")));
+    localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
+      
+    window.location.replace("./signUp.html");
+    
 }
+
+
+
+  
