@@ -1,4 +1,5 @@
 var houseProfile = [];
+var currentuser = new Object;
 
 
 //Check for null value from localstorage variable UserProfile
@@ -39,19 +40,35 @@ function userloginvalidation(event) {
 
     event.preventDefault();
 
+    var userfound
+
     houseProfile.forEach(finduser);
 
     function finduser(houseprofile) {
 
         if (UserName.value === houseprofile.Username && userPswd.value === houseprofile.password){
-            //set current user
-            //window.location.replace('./.html');
-            console.log("Login credentials correct");
+            
+            userfound = true;
+              //set current user
+            currentuser = new Object(houseprofile);
+            localStorage.setItem("currentuser", JSON.stringify(currentuser));
+           
+
         }
 
     }
-        
-    //  alert("Incorrect UserName or Password");
+
+    if(userfound){
+                  
+            window.location.replace('./pages/mainpage.html');
+            
+    }
+
+    else{
+        alert("Invalid Username or Password");
+    }
+    
+     
 
 }
 
@@ -120,10 +137,10 @@ function storeHouseProfile() {
 
     localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
       
-    window.location.replace("./index.html");
+    window.location.replace("../index.html");
     
 }
 
 
 
-  
+ 
