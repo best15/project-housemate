@@ -1,5 +1,5 @@
 var houseProfile = [];
-var currentuser = new Object;
+
 
 
 //Check for null value from localstorage variable UserProfile
@@ -50,7 +50,7 @@ function userloginvalidation(event) {
             
             userfound = true;
               //set current user
-            currentuser = new Object(houseprofile);
+           var currentuser = new Object(houseprofile);
             localStorage.setItem("currentuser", JSON.stringify(currentuser));
            
 
@@ -142,5 +142,3 @@ function storeHouseProfile() {
 }
 
 
-
- 

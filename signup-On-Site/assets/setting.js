@@ -10,7 +10,6 @@ var currentuser = JSON.parse(localStorage.getItem("currentuser"));
 
 var membername = []; //store all housemember name in an array 
 
-
 if(currentuser.hasOwnProperty('housemembers')){
 
     for(var i = 1; i <= currentuser.housemembers.length;i++)
@@ -26,7 +25,6 @@ if(currentuser.hasOwnProperty('housemembers')){
         for (i=1; i<3; i++)
         {
         var memberEl = document.createElement("input");
-        document.createElement("input");
         memberEl.setAttribute('id' , "housemate_" + i );
         memberEl.setAttribute('class' , "mt-3 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-md sm:text-sm border-red-900 rounded-md" );  
         housememberdiv.append(memberEl);
@@ -35,18 +33,18 @@ if(currentuser.hasOwnProperty('housemembers')){
     
 
 if(addhousemembers != null){
-addhousemembers.addEventListener("click", addnewmemberfield);
+addhousemembers.addEventListener("click", addnewmember);
 }
 
-function addnewmemberfield(event) {
+function addnewmember(event) {
     event.preventDefault();
+
     var housemate1 = document.getElementById("housemate_1");
     var i = housememberdiv.childElementCount;
     
     var NewMember = housemate1.cloneNode();
 
     NewMember.setAttribute('id' , "housemate_" + i);
-    
     housememberdiv.append(NewMember);
     NewMember.value = '';  
     NewMember.disabled = false;                  
@@ -99,7 +97,6 @@ if(currentuser.hasOwnProperty('chores')){
     }else{
         var i = 1;
         var choreEl = document.createElement("input");
-        document.createElement("input");
         choreEl.setAttribute('id' , "chore_" + i );
         choreEl.setAttribute('class' , "mt-3 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-md sm:text-sm border-red-900 rounded-md" );  
         chorediv.append(choreEl);
