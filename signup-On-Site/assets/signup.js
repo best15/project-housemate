@@ -137,7 +137,7 @@ function storeHouseProfile() {
 
     localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
       
-    window.location.replace("../index.html");
+    window.location.replace("../Index.html");
     
 }
 
