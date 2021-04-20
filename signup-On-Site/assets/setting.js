@@ -71,7 +71,7 @@ function saveHouseMembers(event) {
             }
             element.housemembers = membername;
             localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
-            localStorage.setItem("currentuser", JSON.stringify(houseProfile));
+            localStorage.setItem("currentuser", JSON.stringify(element));
         }
     });
 }
@@ -139,7 +139,7 @@ function saveChores(event) {
             }
             element.chores = choreNames;
             localStorage.setItem("houseProfile", JSON.stringify(houseProfile));
-            localStorage.setItem("currentuser", JSON.stringify(houseProfile));
+            localStorage.setItem("currentuser", JSON.stringify(element));
         }
     });
 }
